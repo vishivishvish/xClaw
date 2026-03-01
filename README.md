@@ -24,7 +24,7 @@ Instead of hype, this project reconstructs the mechanics of autonomous systems i
 
 ## 🚀 Connection to Project X
 
-xClaw is directly linked to Project X, my long-term initiative to engineer recursively self-improving learning systems.
+xClaw is directly linked to (https://github.com/vishivishvish/vishivishvish.github.io)[Project X], my long-term initiative to engineer recursively self-improving learning systems.
 
 - Project X focuses on the core learning architecture
 - xClaw on the other hand, serves as the execution arm
