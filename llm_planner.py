@@ -18,17 +18,17 @@ class GrokPlanner:
 
     def __init__(self):
         
-        xai_api_key = "xai-W9iK1E5EuxxDmKG4AltX9jDr0T4OheH1GEje1vQWlhNvp9GrqgJnLLPhz7hENQuJQ9Ppp24EctlskI3O";
-        if not xai_api_key:
+        api_key = os.getenv("GROK_API_KEY")
+        if not api_key:
             raise ValueError("Grok API Key not set");
         
         self.client = OpenAI\
         (
-            api_key = xai_api_key,
+            api_key = api_key,
             base_url = "https://api.x.ai/v1"
         );
 
-        self.model = "grok-4-1-fast-non-reasoning";
+        self.model = "grok-code-fast-1";
 
     ##################################
     # Step 1B: Prompt Definition

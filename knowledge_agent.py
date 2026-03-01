@@ -2,14 +2,12 @@ import os;
 import json;
 from openai import OpenAI;
 
-xai_api_key = "xai-W9iK1E5EuxxDmKG4AltX9jDr0T4OheH1GEje1vQWlhNvp9GrqgJnLLPhz7hENQuJQ9Ppp24EctlskI3O";
-
 class KnowledgeSelectionAgent:
 
     def __init__(self):
 
-        api_key = xai_api_key;
-        if not xai_api_key:
+        api_key = os.getenv("GROK_API_KEY")
+        if not api_key:
             raise ValueError("Grok API Key not set");
 
         self.client = OpenAI\
