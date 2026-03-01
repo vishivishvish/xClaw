@@ -15,6 +15,8 @@
 import os;
 import uuid;
 import random;
+import datetime;
+import traceback;
 from collections import defaultdict;
 from llm_planner import GrokPlanner;
 from knowledge_agent import KnowledgeSelectionAgent;
@@ -292,10 +294,22 @@ def read_local_knowledge_tool(context):
     return {"status": "success"}
 
 #####################################################################
+    
+    # This was initially a hardcoded success response in earlier iterations
+    # Now we are defining an actual sandbox experiment tool 
+    
+# def sandbox_experiment_tool(context):
+    # print("Running sandbox experiment...")
+    # return {"status": "success"}
+
+#####################################################################
 
 def sandbox_experiment_tool(context):
-    print("Running sandbox experiment...")
-    return {"status": "success"}
+
+    print("\n--- SANDBOX VALIDATION PHASE ---");
+
+
+#####################################################################
 
 def approval_gate_tool(context):
     print("Awaiting human approval...")
