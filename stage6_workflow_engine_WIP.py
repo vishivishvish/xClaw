@@ -357,7 +357,66 @@ def sandbox_experiment_tool(context):
 
     # Step 2 - Sandbox Execution
 
+    sandbox_globals = {};
+
+    try:
+        exec(generated_code, sandbox_globals);
+        validate_func = sandbox_globals.get("validate_nested_schema");
+        if not validate_func:
+            raise Exception("Function validate_nested_schema not defined");
+
+        # Test Case 1: Missing Nested Field
+       
+        test_data_1 = \
+        {
+            "server":
+            {
+                "host": "localhost"
+            }
+        };
+
+        schema = \
+        {
+            "server":
+            {
+                "host": str,
+                "port": int
+            }
+        };
+
+        try:
+            validate_func(test_data_1, schema);
+            raise Exception("Missing field was not detected");
+        except ValueError:
+            pass;
+
+        # Test Case 2: Type Mismatch
+
+        test_data_2 = \
+        {
+            "server":
+            {
+                "host": "localhost",
+                "port": "8000"
+            }
+        };
+
+        try:
+            validate_func(test_data_2, schema);
+            raise Exception("Type mismatch was not detected");
+        except TypeError:
+            pass;
+
+        print("\n[✔] Sandbox Validation PASSED");
+
+    except Exception as e:
+        print("\n[✘] Sandbox Validation FAILED");
+        print(traceback.format_exc());
+        return {"status": "failed", "error": str(e)};
+
     # Step 3 - Build Structured Skill Object
+
+    
 
     ## WIP - More Code Coming ## 
 
