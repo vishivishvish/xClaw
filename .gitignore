@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+skill_registry.json
+knowledge_base/*.mdc
+.DS_Store
