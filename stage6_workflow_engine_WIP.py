@@ -308,6 +308,14 @@ def sandbox_experiment_tool(context):
 
     print("\n--- SANDBOX VALIDATION PHASE ---");
 
+    structured_failure = context.get("last_error_trace");
+    knowledge_content = context.get("selected_knowledge_content");
+    knowledge_file = context.get("selected_knowledge_file");
+
+    if not structured_failure or not knowledge_content:
+        return {"status": "failed", "error": "Missing knowledge context for sandbox experiment"};
+
+    planner = context["planner"];
 
 #####################################################################
 
