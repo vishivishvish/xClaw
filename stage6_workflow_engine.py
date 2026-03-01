@@ -711,7 +711,6 @@ def simulate_workflow():
         graph.print_graph();
 
         print("\nResuming execution...\n");
-        engine = ExecutionEngine(graph, registry);
 
         print("\n" + "="*70);
         print("RESUMED EXECUTION");
