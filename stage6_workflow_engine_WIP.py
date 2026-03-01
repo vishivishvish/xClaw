@@ -412,14 +412,25 @@ def sandbox_experiment_tool(context):
     except Exception as e:
         print("\n[✘] Sandbox Validation FAILED");
         print(traceback.format_exc());
-        return {"status": "failed", "error": str(e)};
+        return {"status": "failed"};
 
     # Step 3 - Build Structured Skill Object
 
-    
+    skill_object = \
+    {
+        "skill_id": "nested_json_schema_validation",
+        "version": "v1.0",
+        "acquired_from": knowledge_file,
+        "acquired_at": str(datetime.datetime.now()),
+        "validation_status": "passed",
+        "function_name": "validate_nested_schema",
+        "description": "Recursively validates nested dictionaries against schema",
+        "code": generated_code
+    };
 
-    ## WIP - More Code Coming ## 
+    context["new_skill_object"] = skill_object; 
 
+    return {"status": "success"}; 
 
 #####################################################################
 
