@@ -317,7 +317,50 @@ def sandbox_experiment_tool(context):
 
     planner = context["planner"];
 
+    # Step 1 - Ask Grok to extract and adapt function
+
+    prompt = \
+    f"""
+    You are an expert software engineer.
+    Your job is to extract a reusable capability / function from the provided knowledge content.
+    
+    ---
+    Failure Context:
+    {structured_failure}
+    ---
+    Knowledge Content:
+    {knowledge_content}
+    ---
+
+    Task:
+    Extract and adapt a Python function that resolves the failure.
+
+    Rules:
+    - Return ONLY valid Python code.
+    - No Markdown.
+    - No explanation.
+    - You must define a function named:
+    validate_nested_schema(data, schema)
+    - Function must handle:
+      - Missing nested fields.
+      - Type mismatches.
+    - Must be self-contained.
+    """;
+
+    print("[LLM] Requesting function extraction...");
+
+    response = planner.call_raw(prompt);
+    generated_code = response.strip();
+
+    print("\n[LLM Generated Code]\n");
+    print(generated_code);
+
+    # Step 2 - Sandbox Execution
+
+    # Step 3 - Build Structured Skill Object
+
     ## WIP - More Code Coming ## 
+
 
 #####################################################################
 

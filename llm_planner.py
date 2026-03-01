@@ -176,4 +176,20 @@ class GrokPlanner:
 
         return parsed;
 
-# print("All good - llm_planner ready to be used as a module");
+    ####################################
+    # Step 1D: Raw Python Code Generator
+    ####################################
+
+    def call_raw(self, prompt):
+
+        response = self.client.chat.completions.create\
+        (
+            model = self.model,
+            temperature = 0,
+            messages = \
+            [
+                {"role": "system", "content": "You are a precise Python code generator."},
+                {"role": "user", "content": prompt}
+            ]
+        );
+        return response.choices[0].message.content;
